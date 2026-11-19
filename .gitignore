@@ -218,3 +218,15 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# ---- Akira project ----
+# Datasets and model weights live in the shared Google Drive folder, not in git.
+*.jsonl
+*.pth
+*.pth.bak
+*.pth.bad
+*.pt
+*.ckpt
+*.safetensors
+data/
+checkpoints/
