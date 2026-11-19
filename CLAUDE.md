@@ -17,6 +17,19 @@ AkiraGPT is an undergraduate research project. It is a small GPT, about 6 layers
 - **Sensitive domain.** This model responds to mental-health conversations. Treat safety-related changes (crisis handling, output filters) as high scrutiny: explain the change in the PR and never weaken an existing safeguard without saying so.
 - Work on a branch and open a PR. Never push to `main`.
 
+## Authorship (always)
+Every commit, push, pull request and merge must be **authored by the human collaborator who asked for the work**, never by Claude or a bot identity.
+- Before committing, set the git identity to that person, using their GitHub no-reply address, never a personal email:
+  ```bash
+  git config user.name "<Their Name>"
+  git config user.email "<id>+<login>@users.noreply.github.com"   # or <login>@users.noreply.github.com
+  ```
+  Repo owner default: `Joshua Farara <109557415+JoshuaFarara@users.noreply.github.com>`.
+- In the `@claude` GitHub Action, the requester is the person who wrote the `@claude` comment. Commit with `--author="<Their Name> <<login>@users.noreply.github.com>"`.
+- Credit Claude only with a `Co-Authored-By:` trailer at the end of the commit message.
+- Open PRs on behalf of the requester and say in the description who requested them. **Never merge.** A person reviews and merges.
+- If a commit was made under the wrong author on an unmerged branch, fix it with `git commit --amend --reset-author` (or a rebase) and push with `--force-with-lease`. Never rewrite `main`.
+
 ## Editing notebooks
 Edit `.ipynb` as JSON carefully: keep `cells[].source` as a list of lines, keep `outputs: []` and `execution_count: null`, and preserve `metadata.colab`. Check after editing with:
 ```bash
